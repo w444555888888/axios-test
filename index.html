@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x.x/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="search">查詢信息</button></button>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        postList: []
+      },
+      methods: {
+        search () {
+          axios.get("http://localhost:3000/posts")
+            .then(res => {
+              console.log(res);
+              this.postList=res.data;
+            }).catch(reason => {
+              console.log("異常觸發")
+              console.log(res)
+            })
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
